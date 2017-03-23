@@ -57,14 +57,14 @@ end
 
 def self.find_or_create_by(hash)
 
-dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", hash[:name], hash[:breed])
-
-if(dog.empty?)
-  dog = self.create(hash)
-else 
-  new_dog = dog[0]
-  dog = self.new_from_db(new_dog)
-end
+  dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", hash[:name], hash[:breed])
+ 
+  if(dog.empty?)
+    dog = self.create(hash)
+  else 
+    new_dog = dog[0]
+    dog = self.new_from_db(new_dog)
+  end
 dog
 end
 
